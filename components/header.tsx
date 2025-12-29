@@ -1,4 +1,6 @@
-"use client"
+"use client";
+
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -6,19 +8,26 @@ export default function Header() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-[#BFEAC1] rounded-full flex items-center justify-center">
-            <div className="text-[#351E73] font-bold text-xl">🐋</div>
-          </div>
-          <span className="font-bold text-2xl bg-gradient-to-r from-[#BFEAC1] to-[#4F6F71] bg-clip-text text-transparent">
-            Whaly
-          </span>
+          <Image
+            src="/logo-menta.png"
+            alt="Whaly Logo"
+            width={48}
+            height={48}
+            className="object-contain"
+          />
         </div>
 
         {/* Navigation */}
         <nav className="hidden md:flex gap-8 items-center">
-          <button className="hover:text-[#BFEAC1] transition-colors font-medium">Inicio</button>
-          <button className="hover:text-[#B9C0EA] transition-colors font-medium">Servicios</button>
-          <button className="hover:text-[#BFEAC1] transition-colors font-medium">Contacto</button>
+          <button className="hover:text-[#BFEAC1] transition-colors font-medium">
+            Inicio
+          </button>
+          <button className="hover:text-[#B9C0EA] transition-colors font-medium">
+            Servicios
+          </button>
+          <button className="hover:text-[#BFEAC1] transition-colors font-medium">
+            Contacto
+          </button>
         </nav>
 
         {/* CTA Button */}
@@ -27,5 +36,5 @@ export default function Header() {
         </button>
       </div>
     </header>
-  )
+  );
 }

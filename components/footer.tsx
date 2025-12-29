@@ -1,7 +1,9 @@
-"use client"
+"use client";
+
+import Image from "next/image";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gradient-to-r from-purple-950 via-purple-900 to-purple-950 text-gray-300 py-12 px-6 border-t border-purple-800">
@@ -10,10 +12,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="text-2xl">🐋</div>
-              <span className="font-bold text-lg bg-gradient-to-r from-cyan-300 to-green-300 bg-clip-text text-transparent">
-                Whaly Seguros
-              </span>
+              <Image
+                src="/logo-menta.png"
+                alt="Whaly Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
             </div>
             <p className="text-sm text-gray-400">+30 años protegiendo tu tranquilidad</p>
           </div>
@@ -74,5 +79,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
