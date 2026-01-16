@@ -2,7 +2,7 @@
 
 export default function Hero() {
   return (
-    <section className="bg-[#BFEAC1] text-[#351E73] h-[calc(100vh-88px)] flex items-center px-6 relative overflow-hidden">
+    <section id="inicio" className="bg-[#BFEAC1] text-[#351E73] h-[calc(100vh-88px)] flex items-center px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="text-center space-y-6 md:space-y-8">
           {/* Tagline */}

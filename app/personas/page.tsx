@@ -1,82 +1,140 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import Header from "@/components/header"
+import HeaderSimple from "@/components/header-simple"
 import Footer from "@/components/footer"
+import ServiceModal from "@/components/service-modal"
 
 export default function PersonasPage() {
+  const [selectedService, setSelectedService] = useState<{
+    title: string
+    description: string
+    icon: string
+    details: string[]
+  } | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const serviciosPersonas = [
     {
-      title: "Seguro de Vida Individual",
-      description: "Protección financiera para tu familia en caso de fallecimiento",
+      title: "Seguro de Vida",
+      description: "Asegura la estabilidad económica de tu familia en caso de que faltes o padezcas alguna invalidez",
       icon: "🛡️",
       details: [
-        "Cobertura por muerte natural o accidental",
-        "Suma asegurada personalizable",
-        "Beneficiarios designables",
-        "Primas competitivas",
+        "Protección financiera para tu familia",
+        "Cobertura por fallecimiento",
+        "Cobertura por invalidez",
+        "Planes personalizados",
       ],
     },
     {
-      title: "Seguro Familiar",
-      description: "Protección integral para toda tu familia",
-      icon: "👨‍👩‍👧‍👦",
-      details: [
-        "Cobertura para todos los miembros",
-        "Planes adaptados a tu presupuesto",
-        "Asistencia médica incluida",
-        "Flexibilidad en coberturas",
-      ],
-    },
-    {
-      title: "Seguro de Accidentes Personales",
-      description: "Protección ante imprevistos y accidentes",
-      icon: "🚑",
-      details: [
-        "Cobertura por invalidez total o parcial",
-        "Indemnización diaria por hospitalización",
-        "Gastos médicos",
-        "Muerte accidental",
-      ],
-    },
-    {
-      title: "Protección de Salud",
-      description: "Cobertura médica completa para ti y tu familia",
-      icon: "🏥",
-      details: [
-        "Consultas médicas",
-        "Hospitalización",
-        "Medicamentos",
-        "Exámenes y procedimientos",
-      ],
-    },
-    {
-      title: "Seguro de Educación",
-      description: "Asegura el futuro educativo de tus hijos",
-      icon: "📚",
-      details: [
-        "Cobertura de matrículas",
-        "Protección ante fallecimiento del padre",
-        "Planes de ahorro educativo",
-        "Flexibilidad en pagos",
-      ],
-    },
-    {
-      title: "Seguro de Vehículos",
-      description: "Protección completa para tu automóvil",
+      title: "Seguro de Movilidad",
+      description: "Prepárate para cualquier imprevisto en la carretera y protege tu patrimonio por si te roban",
       icon: "🚗",
       details: [
-        "Cobertura de daños materiales",
-        "Responsabilidad civil",
-        "Robo y hurto",
-        "Asistencia en carretera",
+        "Carros",
+        "Motos",
+        "Camiones",
+        "Bicicletas",
+        "Patinetas",
+        "Asistencia y protección cuando más lo necesitas",
+      ],
+    },
+    {
+      title: "Renta Pensión",
+      description: "Diseña tu jubilación perfecta con nosotros. Te ayudamos garantizando la entrega de la cantidad de plata que escojas durante el periodo de tiempo que prefieras",
+      icon: "💰",
+      details: [
+        "Planes de jubilación personalizados",
+        "Cantidad y periodo a tu elección",
+        "Garantía de entrega",
+        "Planificación financiera",
+      ],
+    },
+    {
+      title: "Renta Educación",
+      description: "Descansa tranquilo sabiendo que el futuro de tus hijos está asegurado. La renta educativa te permite planificar y ahorrar para lo más importante en tu vida",
+      icon: "📚",
+      details: [
+        "Planificación educativa",
+        "Ahorro para el futuro de tus hijos",
+        "Tranquilidad garantizada",
+        "Planes flexibles",
+      ],
+    },
+    {
+      title: "Seguros de Salud",
+      description: "Tu salud es lo más importante, te mereces atención rápida y de calidad. Pregunta por nuestras opciones que no dependen de la EPS y por las que te ayudan a complementarla",
+      icon: "🏥",
+      details: [
+        "Salud para todos",
+        "Salud a tu alcance",
+        "Evoluciona",
+        "Clásico",
+        "Global",
+        "Complementa tu EPS",
+      ],
+    },
+    {
+      title: "Seguros de Viaje",
+      description: "Viaja sin preocupaciones con nuestros seguros de viaje. Te ofrecemos la tranquilidad que necesitas para disfrutar de tus vacaciones o tu trabajo",
+      icon: "✈️",
+      details: [
+        "Protección durante tus viajes",
+        "Cobertura ante imprevistos",
+        "Tranquilidad en vacaciones",
+        "Protección en viajes de trabajo",
+      ],
+    },
+    {
+      title: "Seguros de Hogar",
+      description: "¿Sabías que un incendio puede destruir tu hogar en menos de 30 minutos? Protege tu patrimonio de todos los riesgos que puedan afectarlo",
+      icon: "🏠",
+      details: [
+        "Protección contra incendios",
+        "Cobertura de patrimonio",
+        "Protección de bienes importantes",
+        "Cobertura completa del hogar",
+      ],
+    },
+    {
+      title: "Crédito Protegido",
+      description: "Te tenemos la manera de bajar las cuotas de tu crédito. Por el hecho de tener un préstamo, obligatoriamente necesitas un seguro de vida, el cual sale muy caro con el banco",
+      icon: "💳",
+      details: [
+        "Reduce las cuotas de tu crédito",
+        "Seguro de vida más económico",
+        "Ahorro mensual garantizado",
+        "Alternativa al seguro del banco",
+      ],
+    },
+    {
+      title: "Seguro para Mascotas",
+      description: "Imagínate que existe un nuevo seguro que protege la salud de tu mascota y se preocupa por prevenir eventos inesperados y dolorosos para ella",
+      icon: "🐾",
+      details: [
+        "Entre 4 meses y 8 años",
+        "Sin preexistencias",
+        "Medellín, Bogotá y Cali",
+        "Todas las razas",
+        "Protección de salud",
+      ],
+    },
+    {
+      title: "Responsabilidad Civil",
+      description: "Lo que más puede afectar tu patrimonio es causarle un daño a un tercero, ya sea por tu perro, tus hijos, tu casa o incluso por tu profesión",
+      icon: "⚖️",
+      details: [
+        "Responsabilidad Familiar",
+        "Responsabilidad Profesional",
+        "Protección patrimonial",
+        "Cobertura por daños a terceros",
       ],
     },
   ]
 
   return (
     <main>
-      <Header />
+      <HeaderSimple />
       <div className="bg-[#EBF4F6] text-[#351E73] min-h-screen py-20 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
@@ -102,35 +160,33 @@ export default function PersonasPage() {
             {serviciosPersonas.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-300 hover:shadow-xl hover:shadow-[#351E73]/20 hover:-translate-y-1"
+                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-200 hover:shadow-lg hover:shadow-[#351E73]/10 flex flex-col"
               >
                 {/* Icon */}
-                <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl mb-5 transition-transform duration-200 group-hover:scale-105">
                   {service.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] transition-all tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#351E73] text-sm md:text-base mb-5 font-normal leading-relaxed">
+                <p className="text-[#351E73]/80 text-sm md:text-base mb-6 font-normal leading-relaxed flex-grow">
                   {service.description}
                 </p>
 
-                {/* Details */}
-                <ul className="space-y-2">
-                  {service.details.map((detail, i) => (
-                    <li key={i} className="text-[#351E73] text-sm flex items-start gap-2 font-normal">
-                      <span className="text-[#4F6F71] mt-1 font-semibold">✓</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Accent Bar */}
-                <div className="h-1.5 w-12 bg-[#351E73] rounded-full mt-6 group-hover:w-full transition-all duration-500"></div>
+                {/* Ver Más Button */}
+                <button
+                  onClick={() => {
+                    setSelectedService(service)
+                    setIsModalOpen(true)
+                  }}
+                  className="bg-[#351E73] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#2a1859] transition-all duration-200 shadow-md w-full"
+                >
+                  Ver más
+                </button>
               </div>
             ))}
           </div>
@@ -153,6 +209,14 @@ export default function PersonasPage() {
         </div>
       </div>
       <Footer />
+      <ServiceModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedService(null)
+        }}
+        service={selectedService}
+      />
     </main>
   )
 }

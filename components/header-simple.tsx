@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Header() {
+export default function HeaderSimple() {
   return (
     <header className="sticky top-0 z-50 bg-[#351E73] text-white py-5 px-6 shadow-lg backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -18,27 +18,15 @@ export default function Header() {
           />
         </Link>
 
-        {/* Navigation */}
-        <nav className="hidden md:flex gap-8 items-center">
-          <a href="#inicio" className="hover:text-[#BFEAC1] transition-colors duration-200 font-medium text-sm tracking-wide">
-            Inicio
-          </a>
-          <a href="#servicios" className="hover:text-[#B9C0EA] transition-colors duration-200 font-medium text-sm tracking-wide">
-            Servicios
-          </a>
-          <a href="#contacto" className="hover:text-[#BFEAC1] transition-colors duration-200 font-medium text-sm tracking-wide">
-            Contacto
-          </a>
-        </nav>
-
-        {/* CTA Button */}
-        <a
-          href="#contacto"
+        {/* Contact Button */}
+        <Link
+          href="/#contacto"
           className="bg-[#BFEAC1] text-[#351E73] px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#a8d4aa] transition-all duration-200 shadow-md"
         >
           Contactar
-        </a>
+        </Link>
       </div>
     </header>
   )
 }
+

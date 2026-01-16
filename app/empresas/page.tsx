@@ -1,115 +1,137 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import Header from "@/components/header"
+import HeaderSimple from "@/components/header-simple"
 import Footer from "@/components/footer"
+import ServiceModal from "@/components/service-modal"
 
 export default function EmpresasPage() {
+  const [selectedService, setSelectedService] = useState<{
+    title: string
+    description: string
+    icon: string
+    details: string[]
+  } | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const serviciosEmpresas = [
     {
-      title: "Seguro de Responsabilidad Civil",
-      description: "Protección legal y financiera para tu empresa",
-      icon: "⚖️",
+      title: "Todo Riesgo Empresarial",
+      description: "Nuestro seguro todo riesgo empresarial te ofrece la tranquilidad que necesitas para proteger tu empresa de algún evento inesperado que pueda llegar a causarte pérdidas",
+      icon: "🛡️",
       details: [
-        "Cobertura por daños a terceros",
-        "Gastos de defensa legal",
-        "Responsabilidad por productos",
-        "Protección patrimonial",
+        "Protección contra incendio",
+        "Eventos de la naturaleza",
+        "Robo y actos malintencionados",
+        "Cobertura integral",
       ],
     },
     {
-      title: "Seguro de Incendio y Robo",
-      description: "Protección de tus activos e instalaciones",
-      icon: "🔥",
+      title: "Pólizas Colectivas",
+      description: "Te ayudamos a cuidar tu capital humano con pólizas colectivas que tienen ventajas, como: precios más favorables, sin recargo mensual, debitadas por nómina",
+      icon: "👥",
       details: [
-        "Cobertura de incendio",
-        "Robo y hurto calificado",
-        "Daños por agua",
-        "Activos fijos y muebles",
+        "Vida colectiva",
+        "Autos colectivos",
+        "Hogar colectivo",
+        "Salud colectiva",
+        "Mascotas colectivas",
+        "Precios favorables",
       ],
     },
     {
-      title: "Seguro de Equipo y Maquinaria",
-      description: "Protección para tu maquinaria y equipos",
-      icon: "⚙️",
+      title: "Vida Socios",
+      description: "Ten protección para la estabilidad de tu empresa en caso de que pase algún evento inesperado con un socio",
+      icon: "🤝",
       details: [
-        "Equipos de producción",
-        "Maquinaria especializada",
-        "Cobertura por rotura",
-        "Pérdida de beneficios",
+        "Protección de estabilidad empresarial",
+        "Cobertura por eventos inesperados",
+        "Protección de socios",
+        "Continuidad del negocio",
       ],
     },
     {
-      title: "Cobertura de Contingencia",
-      description: "Protección ante interrupciones del negocio",
-      icon: "📊",
-      details: [
-        "Pérdida de beneficios",
-        "Gastos fijos continuos",
-        "Interrupción de operaciones",
-        "Recuperación de mercado",
-      ],
-    },
-    {
-      title: "Seguro de Transporte",
-      description: "Protección para tu flota y mercancías",
+      title: "Transporte de Mercancías",
+      description: "Quédate tranquilo por tu mercancía, ella viaja segura con nosotros en caso de que falte a la entrega, se dañe o se pierda durante su traslado, la roben, etc",
       icon: "🚚",
       details: [
-        "Cobertura de vehículos comerciales",
-        "Mercancías en tránsito",
-        "Responsabilidad civil vehicular",
-        "Asistencia en carretera",
+        "Protección durante el traslado",
+        "Cobertura por pérdida",
+        "Cobertura por daños",
+        "Protección contra robo",
       ],
     },
     {
-      title: "Seguro de Ciberriesgos",
-      description: "Protección digital para tu empresa",
+      title: "Sostenibilidad Legal",
+      description: "Protege tu empresa de riesgos legales que puedan llegar a generar muchas pérdidas con nuestro equipo de abogados especializados en diferentes áreas",
+      icon: "⚖️",
+      details: [
+        "Protección contra riesgos legales",
+        "Equipo de abogados especializados",
+        "Diferentes áreas de expertise",
+        "Prevención de pérdidas",
+      ],
+    },
+    {
+      title: "Protección Digital",
+      description: "No te puedes dar el lujo de permitir un secuestro de la información de tu empresa, por eso tenemos esta solución para protegerte de un ciberataque",
       icon: "💻",
       details: [
-        "Cobertura por ataques cibernéticos",
-        "Pérdida de datos",
-        "Extorsión digital",
-        "Responsabilidad por privacidad",
+        "Protección contra ciberataques",
+        "Seguridad de información",
+        "Prevención de secuestro de datos",
+        "Soluciones digitales",
       ],
     },
     {
-      title: "Seguro de Fidelidad",
-      description: "Protección ante fraudes internos",
-      icon: "🔒",
+      title: "Cumplimiento",
+      description: "Existe un seguro para cumplir con lo pactado, dale seriedad y confiabilidad a los contratos que ofrezcas o que te ofrezcan y firma con tranquilidad",
+      icon: "📋",
       details: [
-        "Cobertura por desfalcos",
-        "Fraude de empleados",
-        "Robo de información",
-        "Protección patrimonial",
+        "Cumplimiento de contratos",
+        "Seriedad y confiabilidad",
+        "Protección contractual",
+        "Tranquilidad en negociaciones",
       ],
     },
     {
-      title: "Seguro de Directivos",
-      description: "Protección para altos ejecutivos",
-      icon: "👔",
+      title: "Responsabilidad Civil Empresarial",
+      description: "Tener a tu empresa protegida es seguridad para tu bolsillo. Asegúrate ante cualquier imprevisto y evita grandes pérdidas económicas por accidentes con terceros",
+      icon: "⚖️",
       details: [
-        "Responsabilidad civil de directivos",
-        "Gastos de defensa legal",
-        "Reclamaciones de accionistas",
-        "Cobertura de errores y omisiones",
+        "Protección ante imprevistos",
+        "Cobertura por accidentes con terceros",
+        "Prevención de pérdidas económicas",
+        "Seguridad patrimonial",
       ],
     },
     {
-      title: "Seguro de Salud Empresarial",
-      description: "Cobertura médica para tus empleados",
-      icon: "🏥",
+      title: "Intermediación de ARL",
+      description: "Si todavía tu empresa no tiene intermediario de ARL estás desaprovechando muchos beneficios, es hora de que tengas uno y Whaly estaría muy feliz de serlo",
+      icon: "🏢",
       details: [
-        "Planes grupales",
-        "Medicina prepagada",
-        "Atención ambulatoria",
-        "Hospitalización",
+        "Intermediación especializada",
+        "Múltiples beneficios",
+        "Propuestas competitivas",
+        "Cambio de intermediario",
+      ],
+    },
+    {
+      title: "Financiación de Autos",
+      description: "Esta es la señal para que compres tu carro nuevo. Nosotros te ayudamos con la financiación del carro que tanto has querido, a las mejores tasas y con muchos beneficios",
+      icon: "🚗",
+      details: [
+        "Financiación de vehículos",
+        "Mejores tasas del mercado",
+        "Múltiples beneficios",
+        "Salvamentos disponibles",
       ],
     },
   ]
 
   return (
     <main>
-      <Header />
+      <HeaderSimple />
       <div className="bg-[#EBF4F6] text-[#351E73] min-h-screen py-20 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
@@ -135,35 +157,33 @@ export default function EmpresasPage() {
             {serviciosEmpresas.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-300 hover:shadow-xl hover:shadow-[#351E73]/20 hover:-translate-y-1"
+                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-200 hover:shadow-lg hover:shadow-[#351E73]/10 flex flex-col"
               >
                 {/* Icon */}
-                <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl mb-5 transition-transform duration-200 group-hover:scale-105">
                   {service.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] transition-all tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#351E73] text-sm md:text-base mb-5 font-normal leading-relaxed">
+                <p className="text-[#351E73]/80 text-sm md:text-base mb-6 font-normal leading-relaxed flex-grow">
                   {service.description}
                 </p>
 
-                {/* Details */}
-                <ul className="space-y-2">
-                  {service.details.map((detail, i) => (
-                    <li key={i} className="text-[#351E73] text-sm flex items-start gap-2 font-normal">
-                      <span className="text-[#4F6F71] mt-1 font-semibold">✓</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Accent Bar */}
-                <div className="h-1.5 w-12 bg-[#4F6F71] rounded-full mt-6 group-hover:w-full transition-all duration-500"></div>
+                {/* Ver Más Button */}
+                <button
+                  onClick={() => {
+                    setSelectedService(service)
+                    setIsModalOpen(true)
+                  }}
+                  className="bg-[#351E73] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#2a1859] transition-all duration-200 shadow-md w-full"
+                >
+                  Ver más
+                </button>
               </div>
             ))}
           </div>
@@ -186,6 +206,14 @@ export default function EmpresasPage() {
         </div>
       </div>
       <Footer />
+      <ServiceModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedService(null)
+        }}
+        service={selectedService}
+      />
     </main>
   )
 }
