@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import HeaderSimple from "@/components/header-simple"
 import Footer from "@/components/footer"
 import ServiceModal from "@/components/service-modal"
@@ -10,7 +11,8 @@ export default function EmpresasPage() {
   const [selectedService, setSelectedService] = useState<{
     title: string
     description: string
-    icon: string
+    image?: string
+    icon?: string
     details: string[]
   } | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -18,7 +20,7 @@ export default function EmpresasPage() {
     {
       title: "Todo Riesgo Empresarial",
       description: "Nuestro seguro todo riesgo empresarial te ofrece la tranquilidad que necesitas para proteger tu empresa de algún evento inesperado que pueda llegar a causarte pérdidas",
-      icon: "🛡️",
+      image: "/Escenarios/Escenarios-13.jpg",
       details: [
         "Protección contra incendio",
         "Eventos de la naturaleza",
@@ -29,7 +31,7 @@ export default function EmpresasPage() {
     {
       title: "Pólizas Colectivas",
       description: "Te ayudamos a cuidar tu capital humano con pólizas colectivas que tienen ventajas, como: precios más favorables, sin recargo mensual, debitadas por nómina",
-      icon: "👥",
+      image: "/Escenarios/Escenarios-14.jpg",
       details: [
         "Vida colectiva",
         "Autos colectivos",
@@ -42,7 +44,7 @@ export default function EmpresasPage() {
     {
       title: "Vida Socios",
       description: "Ten protección para la estabilidad de tu empresa en caso de que pase algún evento inesperado con un socio",
-      icon: "🤝",
+      image: "/Escenarios/Escenarios-15.jpg",
       details: [
         "Protección de estabilidad empresarial",
         "Cobertura por eventos inesperados",
@@ -53,7 +55,7 @@ export default function EmpresasPage() {
     {
       title: "Transporte de Mercancías",
       description: "Quédate tranquilo por tu mercancía, ella viaja segura con nosotros en caso de que falte a la entrega, se dañe o se pierda durante su traslado, la roben, etc",
-      icon: "🚚",
+      image: "/Escenarios/Escenarios-16.jpg",
       details: [
         "Protección durante el traslado",
         "Cobertura por pérdida",
@@ -64,7 +66,7 @@ export default function EmpresasPage() {
     {
       title: "Sostenibilidad Legal",
       description: "Protege tu empresa de riesgos legales que puedan llegar a generar muchas pérdidas con nuestro equipo de abogados especializados en diferentes áreas",
-      icon: "⚖️",
+      image: "/Escenarios/Escenarios-17.jpg",
       details: [
         "Protección contra riesgos legales",
         "Equipo de abogados especializados",
@@ -75,7 +77,7 @@ export default function EmpresasPage() {
     {
       title: "Protección Digital",
       description: "No te puedes dar el lujo de permitir un secuestro de la información de tu empresa, por eso tenemos esta solución para protegerte de un ciberataque",
-      icon: "💻",
+      image: "/Escenarios/Escenarios-18.jpg",
       details: [
         "Protección contra ciberataques",
         "Seguridad de información",
@@ -86,7 +88,7 @@ export default function EmpresasPage() {
     {
       title: "Cumplimiento",
       description: "Existe un seguro para cumplir con lo pactado, dale seriedad y confiabilidad a los contratos que ofrezcas o que te ofrezcan y firma con tranquilidad",
-      icon: "📋",
+      image: "/Escenarios/Escenarios-19.jpg",
       details: [
         "Cumplimiento de contratos",
         "Seriedad y confiabilidad",
@@ -97,7 +99,7 @@ export default function EmpresasPage() {
     {
       title: "Responsabilidad Civil Empresarial",
       description: "Tener a tu empresa protegida es seguridad para tu bolsillo. Asegúrate ante cualquier imprevisto y evita grandes pérdidas económicas por accidentes con terceros",
-      icon: "⚖️",
+      image: "/Escenarios/Escenarios-20.jpg",
       details: [
         "Protección ante imprevistos",
         "Cobertura por accidentes con terceros",
@@ -108,7 +110,7 @@ export default function EmpresasPage() {
     {
       title: "Intermediación de ARL",
       description: "Si todavía tu empresa no tiene intermediario de ARL estás desaprovechando muchos beneficios, es hora de que tengas uno y Whaly estaría muy feliz de serlo",
-      icon: "🏢",
+      image: "/Escenarios/Escenarios-21.jpg",
       details: [
         "Intermediación especializada",
         "Múltiples beneficios",
@@ -119,7 +121,7 @@ export default function EmpresasPage() {
     {
       title: "Financiación de Autos",
       description: "Esta es la señal para que compres tu carro nuevo. Nosotros te ayudamos con la financiación del carro que tanto has querido, a las mejores tasas y con muchos beneficios",
-      icon: "🚗",
+      image: "/Escenarios/Escenarios-22.jpg",
       details: [
         "Financiación de vehículos",
         "Mejores tasas del mercado",
@@ -153,37 +155,42 @@ export default function EmpresasPage() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
             {serviciosEmpresas.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-200 hover:shadow-lg hover:shadow-[#351E73]/10 flex flex-col"
+                className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                onClick={() => {
+                  setSelectedService(service)
+                  setIsModalOpen(true)
+                }}
               >
-                {/* Icon */}
-                <div className="text-4xl mb-5 transition-transform duration-200 group-hover:scale-105">
-                  {service.icon}
+                {/* Image */}
+                {service.image && (
+                  <div className="relative h-48 md:h-56 overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#351E73]/30 via-[#351E73]/8 to-transparent"></div>
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="p-5 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold mb-2 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
+                    {service.title}
+                  </h3>
+                  <p className="text-[#351E73]/80 text-sm md:text-base mb-4 font-normal leading-relaxed line-clamp-2">
+                    {service.description}
+                  </p>
+                  <button className="text-[#351E73] font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all duration-200">
+                    Ver más
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </button>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#351E73]/80 text-sm md:text-base mb-6 font-normal leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-
-                {/* Ver Más Button */}
-                <button
-                  onClick={() => {
-                    setSelectedService(service)
-                    setIsModalOpen(true)
-                  }}
-                  className="bg-[#351E73] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#2a1859] transition-all duration-200 shadow-md w-full"
-                >
-                  Ver más
-                </button>
               </div>
             ))}
           </div>

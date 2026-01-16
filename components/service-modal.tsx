@@ -1,12 +1,15 @@
 "use client"
 
+import Image from "next/image"
+
 interface ServiceModalProps {
   isOpen: boolean
   onClose: () => void
   service: {
     title: string
     description: string
-    icon: string
+    image?: string
+    icon?: string
     details: string[]
   } | null
 }
@@ -27,7 +30,18 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
         <div className="bg-[#EBF4F6] px-6 md:px-8 py-6 border-b border-[#351E73]/10">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-4">
-              <div className="text-4xl">{service.icon}</div>
+              {service.image ? (
+                <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : service.icon ? (
+                <div className="text-4xl">{service.icon}</div>
+              ) : null}
               <h2 className="text-2xl md:text-3xl font-bold text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
                 {service.title}
               </h2>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import HeaderSimple from "@/components/header-simple"
 import Footer from "@/components/footer"
 import ServiceModal from "@/components/service-modal"
@@ -10,7 +11,8 @@ export default function PersonasPage() {
   const [selectedService, setSelectedService] = useState<{
     title: string
     description: string
-    icon: string
+    image?: string
+    icon?: string
     details: string[]
   } | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -18,7 +20,7 @@ export default function PersonasPage() {
     {
       title: "Seguro de Vida",
       description: "Asegura la estabilidad económica de tu familia en caso de que faltes o padezcas alguna invalidez",
-      icon: "🛡️",
+      image: "/Escenarios/Escenarios-3.jpg",
       details: [
         "Protección financiera para tu familia",
         "Cobertura por fallecimiento",
@@ -29,7 +31,7 @@ export default function PersonasPage() {
     {
       title: "Seguro de Movilidad",
       description: "Prepárate para cualquier imprevisto en la carretera y protege tu patrimonio por si te roban",
-      icon: "🚗",
+      image: "/Escenarios/Escenarios-4.jpg",
       details: [
         "Carros",
         "Motos",
@@ -42,7 +44,7 @@ export default function PersonasPage() {
     {
       title: "Renta Pensión",
       description: "Diseña tu jubilación perfecta con nosotros. Te ayudamos garantizando la entrega de la cantidad de plata que escojas durante el periodo de tiempo que prefieras",
-      icon: "💰",
+      image: "/Escenarios/Escenarios-5.jpg",
       details: [
         "Planes de jubilación personalizados",
         "Cantidad y periodo a tu elección",
@@ -53,7 +55,7 @@ export default function PersonasPage() {
     {
       title: "Renta Educación",
       description: "Descansa tranquilo sabiendo que el futuro de tus hijos está asegurado. La renta educativa te permite planificar y ahorrar para lo más importante en tu vida",
-      icon: "📚",
+      image: "/Escenarios/Escenarios-6.jpg",
       details: [
         "Planificación educativa",
         "Ahorro para el futuro de tus hijos",
@@ -64,7 +66,7 @@ export default function PersonasPage() {
     {
       title: "Seguros de Salud",
       description: "Tu salud es lo más importante, te mereces atención rápida y de calidad. Pregunta por nuestras opciones que no dependen de la EPS y por las que te ayudan a complementarla",
-      icon: "🏥",
+      image: "/Escenarios/Escenarios-7.jpg",
       details: [
         "Salud para todos",
         "Salud a tu alcance",
@@ -77,7 +79,7 @@ export default function PersonasPage() {
     {
       title: "Seguros de Viaje",
       description: "Viaja sin preocupaciones con nuestros seguros de viaje. Te ofrecemos la tranquilidad que necesitas para disfrutar de tus vacaciones o tu trabajo",
-      icon: "✈️",
+      image: "/Escenarios/Escenarios-8.jpg",
       details: [
         "Protección durante tus viajes",
         "Cobertura ante imprevistos",
@@ -88,7 +90,7 @@ export default function PersonasPage() {
     {
       title: "Seguros de Hogar",
       description: "¿Sabías que un incendio puede destruir tu hogar en menos de 30 minutos? Protege tu patrimonio de todos los riesgos que puedan afectarlo",
-      icon: "🏠",
+      image: "/Escenarios/Escenarios-9.jpg",
       details: [
         "Protección contra incendios",
         "Cobertura de patrimonio",
@@ -99,7 +101,7 @@ export default function PersonasPage() {
     {
       title: "Crédito Protegido",
       description: "Te tenemos la manera de bajar las cuotas de tu crédito. Por el hecho de tener un préstamo, obligatoriamente necesitas un seguro de vida, el cual sale muy caro con el banco",
-      icon: "💳",
+      image: "/Escenarios/Escenarios-10.jpg",
       details: [
         "Reduce las cuotas de tu crédito",
         "Seguro de vida más económico",
@@ -110,7 +112,7 @@ export default function PersonasPage() {
     {
       title: "Seguro para Mascotas",
       description: "Imagínate que existe un nuevo seguro que protege la salud de tu mascota y se preocupa por prevenir eventos inesperados y dolorosos para ella",
-      icon: "🐾",
+      image: "/Escenarios/Escenarios-11.jpg",
       details: [
         "Entre 4 meses y 8 años",
         "Sin preexistencias",
@@ -122,7 +124,7 @@ export default function PersonasPage() {
     {
       title: "Responsabilidad Civil",
       description: "Lo que más puede afectar tu patrimonio es causarle un daño a un tercero, ya sea por tu perro, tus hijos, tu casa o incluso por tu profesión",
-      icon: "⚖️",
+      image: "/Escenarios/Escenarios-12.jpg",
       details: [
         "Responsabilidad Familiar",
         "Responsabilidad Profesional",
@@ -156,37 +158,40 @@ export default function PersonasPage() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
             {serviciosPersonas.map((service, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-[#351E73]/20 rounded-2xl p-6 md:p-8 hover:border-[#351E73] transition-all duration-200 hover:shadow-lg hover:shadow-[#351E73]/10 flex flex-col"
+                className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                onClick={() => {
+                  setSelectedService(service)
+                  setIsModalOpen(true)
+                }}
               >
-                {/* Icon */}
-                <div className="text-4xl mb-5 transition-transform duration-200 group-hover:scale-105">
-                  {service.icon}
+                {/* Image */}
+                <div className="relative h-48 md:h-56 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#351E73]/30 via-[#351E73]/8 to-transparent"></div>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#351E73]/80 text-sm md:text-base mb-6 font-normal leading-relaxed flex-grow">
-                  {service.description}
-                </p>
-
-                {/* Ver Más Button */}
-                <button
-                  onClick={() => {
-                    setSelectedService(service)
-                    setIsModalOpen(true)
-                  }}
-                  className="bg-[#351E73] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#2a1859] transition-all duration-200 shadow-md w-full"
-                >
-                  Ver más
-                </button>
+                {/* Content */}
+                <div className="p-5 md:p-6">
+                  <h3 className="text-lg md:text-xl font-bold mb-2 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
+                    {service.title}
+                  </h3>
+                  <p className="text-[#351E73]/80 text-sm md:text-base mb-4 font-normal leading-relaxed line-clamp-2">
+                    {service.description}
+                  </p>
+                  <button className="text-[#351E73] font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all duration-200">
+                    Ver más
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </button>
+                </div>
               </div>
             ))}
           </div>
