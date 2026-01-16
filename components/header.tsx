@@ -1,13 +1,14 @@
-"use client";
+"use client"
 
-import Image from "next/image";
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Header() {
   return (
-    <header className="bg-[#351E73] text-white py-4 px-6 shadow-lg">
+    <header className="sticky top-0 z-50 bg-[#351E73] text-white py-5 px-6 shadow-lg backdrop-blur-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo-menta.png"
             alt="Whaly Logo"
@@ -15,26 +16,29 @@ export default function Header() {
             height={48}
             className="object-contain"
           />
-        </div>
+        </Link>
 
         {/* Navigation */}
         <nav className="hidden md:flex gap-8 items-center">
-          <button className="hover:text-[#BFEAC1] transition-colors font-medium">
+          <a href="#inicio" className="hover:text-[#BFEAC1] transition-colors duration-200 font-medium text-sm tracking-wide">
             Inicio
-          </button>
-          <button className="hover:text-[#B9C0EA] transition-colors font-medium">
+          </a>
+          <a href="#servicios" className="hover:text-[#B9C0EA] transition-colors duration-200 font-medium text-sm tracking-wide">
             Servicios
-          </button>
-          <button className="hover:text-[#BFEAC1] transition-colors font-medium">
+          </a>
+          <a href="#contacto" className="hover:text-[#BFEAC1] transition-colors duration-200 font-medium text-sm tracking-wide">
             Contacto
-          </button>
+          </a>
         </nav>
 
         {/* CTA Button */}
-        <button className="bg-gradient-to-r from-[#BFEAC1] to-[#4F6F71] text-[#351E73] px-6 py-2 rounded-full font-bold hover:shadow-lg hover:shadow-[#BFEAC1]/50 transition-all">
+        <a
+          href="#contacto"
+          className="bg-[#BFEAC1] text-[#351E73] px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#a8d4aa] transition-all duration-200 shadow-md"
+        >
           Contactar
-        </button>
+        </a>
       </div>
     </header>
-  );
+  )
 }

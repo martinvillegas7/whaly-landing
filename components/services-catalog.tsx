@@ -70,16 +70,16 @@ export default function ServicesCatalog({ onBack }: ServicesCatalogProps) {
   ]
 
   return (
-    <div className="bg-gradient-to-b from-purple-900 via-gray-900 to-gray-900 min-h-screen text-white">
+    <div className="bg-[#351E73] min-h-screen text-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 py-8 px-6 sticky top-0 z-20 shadow-lg">
+      <div className="bg-[#351E73] py-8 px-6 sticky top-0 z-20 shadow-lg border-b border-[#2a1859]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-300 to-green-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#BFEAC1] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
             Catálogo de Servicios
           </h1>
           <button
             onClick={onBack}
-            className="bg-gradient-to-r from-green-400 to-cyan-400 text-purple-900 px-6 py-2 rounded-full font-bold hover:shadow-lg transition-all"
+            className="bg-[#BFEAC1] text-[#351E73] px-6 py-2.5 rounded-lg font-semibold hover:bg-[#a8d4aa] transition-all duration-300 shadow-md"
           >
             ← Volver
           </button>
@@ -92,44 +92,44 @@ export default function ServicesCatalog({ onBack }: ServicesCatalogProps) {
           {allServices.map((service, index) => (
             <div
               key={index}
-              className="group bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
+              className="group bg-[#2a1859] border-2 border-[#B9C0EA]/20 rounded-2xl p-6 md:p-8 hover:border-[#BFEAC1] transition-all duration-300 hover:shadow-xl hover:shadow-[#BFEAC1]/20 hover:-translate-y-1"
             >
               {/* Icon */}
-              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-4xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-300 group-hover:to-cyan-300 group-hover:bg-clip-text transition-all">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#BFEAC1] transition-all tracking-tight">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-400 text-sm mb-4">{service.description}</p>
+              <p className="text-[#B9C0EA] text-sm md:text-base mb-5 font-normal">{service.description}</p>
 
               {/* Details */}
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {service.details.map((detail, i) => (
-                  <li key={i} className="text-gray-300 text-sm flex items-start gap-2">
-                    <span className="text-green-400 mt-1">✓</span>
+                  <li key={i} className="text-[#B9C0EA] text-sm flex items-start gap-2.5 font-normal">
+                    <span className="text-[#BFEAC1] mt-1 font-semibold">✓</span>
                     <span>{detail}</span>
                   </li>
                 ))}
               </ul>
 
               {/* Accent */}
-              <div className="h-1 w-8 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full mt-6 group-hover:w-full transition-all duration-300"></div>
+              <div className="h-1.5 w-12 bg-[#BFEAC1] rounded-full mt-6 group-hover:w-full transition-all duration-500"></div>
             </div>
           ))}
         </div>
 
         {/* Additional Info */}
-        <div className="bg-gradient-to-r from-purple-900/50 to-purple-800/50 border border-purple-700/50 rounded-2xl p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">¿Listo para proteger tu tranquilidad?</h2>
-          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+        <div className="bg-[#2a1859] border-2 border-[#B9C0EA]/30 rounded-2xl p-8 md:p-10 text-center mt-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-5 tracking-tight text-[#BFEAC1]" style={{ fontFamily: 'var(--font-display), serif' }}>¿Listo para proteger tu tranquilidad?</h2>
+          <p className="text-[#B9C0EA] mb-8 max-w-2xl mx-auto text-base md:text-lg font-normal leading-relaxed">
             Contáctanos hoy para una asesoría personalizada y descubre cómo podemos ayudarte
           </p>
-          <button className="bg-gradient-to-r from-cyan-400 to-green-400 text-purple-900 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-cyan-400/50 transition-all transform hover:scale-105">
+          <button className="bg-[#BFEAC1] text-[#351E73] px-10 py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-[#a8d4aa] transition-all duration-300 shadow-lg">
             Agendar Consulta
           </button>
         </div>

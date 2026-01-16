@@ -1,85 +1,77 @@
 "use client"
 
-interface ServicesProps {
-  onViewMore: () => void
-}
+import Link from "next/link"
 
-export default function Services({ onViewMore }: ServicesProps) {
+export default function Services() {
   const mainServices = [
     {
-      title: "Seguros Personas y Familias",
+      title: "Seguros para Personas",
       description: "Protección integral para ti y tu familia con coberturas personalizadas",
       icon: "👨‍👩‍👧‍👦",
-      accentColor: "from-[#351E73] to-[#4F6F71]",
+      bgColor: "bg-[#BFEAC1]/30",
+      borderColor: "border-[#BFEAC1]/40",
+      hoverBg: "hover:bg-[#BFEAC1]/40",
+      accentColor: "bg-[#4F6F71]",
+      href: "/personas",
     },
     {
-      title: "Seguros Empresariales",
+      title: "Seguros para Empresas",
       description: "Soluciones completas para proteger tu negocio y activos",
       icon: "🏢",
-      accentColor: "from-[#4F6F71] to-[#351E73]",
-    },
-    {
-      title: "Seguros Obligatorios",
-      description: "Cumplimiento legal con la mejor cobertura del mercado",
-      icon: "📋",
-      accentColor: "from-[#351E73] to-[#BFEAC1]",
-    },
-    {
-      title: "Financiación y Análisis Personalizado",
-      description: "Planes financieros adaptados a tus necesidades específicas",
-      icon: "💰",
-      accentColor: "from-[#BFEAC1] to-[#4F6F71]",
+      bgColor: "bg-[#B9C0EA]/30",
+      borderColor: "border-[#B9C0EA]/40",
+      hoverBg: "hover:bg-[#B9C0EA]/40",
+      accentColor: "bg-[#351E73]",
+      href: "/empresas",
     },
   ]
 
   return (
-    <section className="bg-gradient-to-b from-[#B9C0EA] via-[#E8E9F5] to-[#B9C0EA] text-[#351E73] py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="servicios" className="bg-[#EBF4F6] text-[#351E73] py-24 md:py-32 px-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#351E73]">
-            <span className="text-[#351E73]">Servicios que </span>
-            <span className="bg-gradient-to-r from-[#351E73] to-[#4F6F71] bg-clip-text text-transparent">
+        <div className="text-center mb-16 md:mb-20">
+          <div className="inline-block mb-4">
+            <span className="text-[#351E73]/70 text-sm md:text-base font-semibold tracking-[0.2em] uppercase">
+              NUESTROS SERVICIOS
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
+            <span className="text-[#351E73] font-[800]">Servicios que </span>
+            <span className="text-[#351E73] font-[800]">
               protegen tu vida
             </span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-[#351E73] to-[#4F6F71] mx-auto rounded-full"></div>
+          <p className="text-lg md:text-xl text-[#351E73]/70 max-w-2xl mx-auto leading-relaxed font-normal mt-4">
+            Soluciones de seguros diseñadas para proteger lo que más importa
+          </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
           {mainServices.map((service, index) => (
-            <div
+            <Link
               key={index}
-              className="group bg-white/50 border border-[#351E73]/20 rounded-2xl p-8 hover:border-[#351E73]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#351E73]/10 hover:bg-white"
+              href={service.href}
+              className={`group ${service.bgColor} ${service.borderColor} border-2 rounded-xl p-8 md:p-10 ${service.hoverBg} transition-all duration-200 hover:border-opacity-60 block`}
             >
               {/* Icon */}
-              <div className={`text-5xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div className="text-5xl md:text-6xl mb-6 transition-transform duration-200 group-hover:scale-105">
                 {service.icon}
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-bold mb-3 text-[#351E73] group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#351E73] group-hover:to-[#4F6F71] group-hover:bg-clip-text transition-all">
+              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
                 {service.title}
               </h3>
-              <p className="text-[#351E73]/70 text-lg leading-relaxed">{service.description}</p>
+              <p className="text-[#351E73]/80 text-base md:text-lg leading-relaxed font-normal mb-6">
+                {service.description}
+              </p>
 
               {/* Accent Bar */}
-              <div
-                className={`h-1 w-12 bg-gradient-to-r ${service.accentColor} rounded-full mt-6 group-hover:w-full transition-all duration-300`}
-              ></div>
-            </div>
+              <div className={`h-1 w-20 ${service.accentColor} rounded-full mt-6 transition-all duration-300 group-hover:w-24`}></div>
+            </Link>
           ))}
-        </div>
-
-        {/* View More Button */}
-        <div className="text-center">
-          <button
-            onClick={onViewMore}
-            className="bg-gradient-to-r from-[#351E73] to-[#4F6F71] text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-[#351E73]/50 transition-all transform hover:scale-105 inline-block"
-          >
-            Ver todos los servicios →
-          </button>
         </div>
       </div>
     </section>
