@@ -57,19 +57,18 @@ export default function Services() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#351E73]/40 via-[#351E73]/10 to-transparent"></div>
                 </div>
 
-                {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
+                {/* Content Section */}
+                <div className="p-6 md:p-8 bg-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
                     {service.title}
                   </h3>
-                  <p className="text-white/90 text-base md:text-lg leading-relaxed font-normal mb-4">
+                  <p className="text-[#351E73]/80 text-base md:text-lg leading-relaxed font-normal mb-4">
                     {service.description}
                   </p>
-                  <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors duration-200">
-                    <span className="font-semibold">Ver más</span>
+                  <div className="flex items-center gap-2 text-[#351E73] font-semibold group-hover:gap-3 transition-all duration-200">
+                    <span>Ver más</span>
                     <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </div>
                 </div>
