@@ -1,27 +1,20 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Services() {
   const mainServices = [
     {
       title: "Seguros para Personas",
       description: "Protección integral para ti y tu familia con coberturas personalizadas",
-      icon: "👨‍👩‍👧‍👦",
-      bgColor: "bg-[#BFEAC1]/30",
-      borderColor: "border-[#BFEAC1]/40",
-      hoverBg: "hover:bg-[#BFEAC1]/40",
-      accentColor: "bg-[#4F6F71]",
+      image: "/Escenarios/Escenarios-1.jpg",
       href: "/personas",
     },
     {
       title: "Seguros para Empresas",
       description: "Soluciones completas para proteger tu negocio y activos",
-      icon: "🏢",
-      bgColor: "bg-[#B9C0EA]/30",
-      borderColor: "border-[#B9C0EA]/40",
-      hoverBg: "hover:bg-[#B9C0EA]/40",
-      accentColor: "bg-[#351E73]",
+      image: "/Escenarios/Escenarios-2.jpg",
       href: "/empresas",
     },
   ]
@@ -47,29 +40,40 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+        {/* Services with Images */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
           {mainServices.map((service, index) => (
             <Link
               key={index}
               href={service.href}
-              className={`group ${service.bgColor} ${service.borderColor} border-2 rounded-xl p-8 md:p-10 ${service.hoverBg} transition-all duration-200 hover:border-opacity-60 block`}
+              className="group block"
             >
-              {/* Icon */}
-              <div className="text-5xl md:text-6xl mb-6 transition-transform duration-200 group-hover:scale-105">
-                {service.icon}
+              <div className="relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300">
+                {/* Image */}
+                <div className="relative h-64 md:h-80 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#351E73]/40 via-[#351E73]/10 to-transparent"></div>
+                </div>
+
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
+                    {service.title}
+                  </h3>
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed font-normal mb-4">
+                    {service.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-white/80 group-hover:text-white transition-colors duration-200">
+                    <span className="font-semibold">Ver más</span>
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
               </div>
-
-              {/* Content */}
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
-                {service.title}
-              </h3>
-              <p className="text-[#351E73]/80 text-base md:text-lg leading-relaxed font-normal mb-6">
-                {service.description}
-              </p>
-
-              {/* Accent Bar */}
-              <div className={`h-1 w-20 ${service.accentColor} rounded-full mt-6 transition-all duration-300 group-hover:w-24`}></div>
             </Link>
           ))}
         </div>
