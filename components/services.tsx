@@ -30,13 +30,13 @@ export default function Services() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
-            <span className="text-[#351E73] font-[800]">Servicios que </span>
+            <span className="text-[#351E73] font-[800]">Soluciones que </span>
             <span className="text-[#351E73] font-[800]">
-              protegen tu vida
+              protegen tu vida y tu patrimonio
             </span>
           </h2>
           <p className="text-lg md:text-xl text-[#351E73]/70 max-w-2xl mx-auto leading-relaxed font-normal mt-4">
-            Soluciones de seguros diseñadas para proteger lo que más importa
+            Te recomendamos lo que deberías tener de acuerdo a tus necesidades y presupuesto
           </p>
         </div>
 

@@ -40,13 +40,13 @@ export default function Contact() {
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#351E73] tracking-tight" style={{ fontFamily: 'var(--font-display), serif' }}>
             <span className="text-[#351E73] font-[800]">
-              Listo para agendar
+              Estas a nada de saber
             </span>
             <br />
-            <span className="text-[#351E73] font-[800]">tu tranquilidad</span>
+            <span className="text-[#351E73] font-[800]">que es vivir tranquilo</span>
           </h2>
           <p className="text-lg md:text-xl text-[#351E73]/70 max-w-2xl mx-auto leading-relaxed font-normal mt-4">
-            Contáctanos por el medio que prefieras y uno de nuestros especialistas te asesorará
+            Escríbenos por donde te parezca más fácil y susi te va a ayudar con todo lo que necesites
           </p>
         </div>
 
@@ -103,9 +103,9 @@ export default function Contact() {
         {/* Highlight Box */}
         <div className="bg-white border-2 border-[#351E73]/20 rounded-xl p-8 md:p-10 text-center mt-12">
           <p className="text-lg md:text-xl text-[#351E73] mb-3">
-            <span className="font-semibold">Atención rápida y profesional</span>
+            <span className="font-semibold">Te respondemos lo más rápido posible</span>
           </p>
-          <p className="text-[#351E73]/80 text-base md:text-lg font-normal">Disponibles para ti en horario comercial y emergencias las 24 horas</p>
+          <p className="text-[#351E73]/80 text-base md:text-lg font-normal">Estamos para ti en horario comercial y emergencias las 24 horas</p>
         </div>
       </div>
     </section>

@@ -36,7 +36,7 @@ export default function Header() {
           href="#contacto"
           className="bg-[#BFEAC1] text-[#351E73] px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#a8d4aa] transition-all duration-200 shadow-md"
         >
-          Contactar
+          Escríbenos
         </a>
       </div>
     </header>

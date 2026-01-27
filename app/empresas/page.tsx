@@ -207,7 +207,7 @@ export default function EmpresasPage() {
               href="/#contacto"
               className="bg-[#351E73] text-white px-10 py-4 rounded-lg font-semibold text-base md:text-lg hover:bg-[#2a1859] transition-all duration-300 shadow-lg inline-block"
             >
-              Contactar Ahora
+              Escríbenos ahora
             </Link>
           </div>
         </div>
